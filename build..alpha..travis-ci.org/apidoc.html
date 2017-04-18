@@ -1,0 +1,546 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/isaacs/slide-flow-control"
+
+    >slide (v1.1.6)</a>
+</h1>
+<h4>A flow control lib small enough to fit on in a slide presentation. Derived live at Oak.JS</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.slide">module slide</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.slide.asyncMap">
+            function <span class="apidocSignatureSpan">slide.</span>asyncMap
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.slide.bindActor">
+            function <span class="apidocSignatureSpan">slide.</span>bindActor
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.slide.chain">
+            function <span class="apidocSignatureSpan">slide.</span>chain
+            <span class="apidocSignatureSpan">(things, cb)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan"></span>slide</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.slide.asyncMap">module slide.asyncMap</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.slide.asyncMap.asyncMap">
+            function <span class="apidocSignatureSpan">slide.</span>asyncMap
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.slide.bindActor">module slide.bindActor</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.slide.bindActor.bindActor">
+            function <span class="apidocSignatureSpan">slide.</span>bindActor
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.slide.chain">module slide.chain</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.slide.chain.chain">
+            function <span class="apidocSignatureSpan">slide.</span>chain
+            <span class="apidocSignatureSpan">(things, cb)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">slide.chain.</span>first</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">slide.chain.</span>last</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.slide.slide">module slide.slide</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.slide.slide.asyncMap">
+            function <span class="apidocSignatureSpan">slide.slide.</span>asyncMap
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.slide.slide.bindActor">
+            function <span class="apidocSignatureSpan">slide.slide.</span>bindActor
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.slide.slide.chain">
+            function <span class="apidocSignatureSpan">slide.slide.</span>chain
+            <span class="apidocSignatureSpan">(things, cb)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.slide" id="apidoc.module.slide">module slide</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.slide.asyncMap" id="apidoc.element.slide.asyncMap">
+        function <span class="apidocSignatureSpan">slide.</span>asyncMap
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function asyncMap() {
+  var steps = Array.prototype.slice.call(arguments)
+    , list = steps.shift() || []
+    , cb_ = steps.pop()
+  if (typeof cb_ !== &#x22;function&#x22;) throw new Error(
+    &#x22;No callback provided to asyncMap&#x22;)
+  if (!list) return cb_(null, [])
+  if (!Array.isArray(list)) list = [list]
+  var n = steps.length
+    , data = [] // 2d array
+    , errState = null
+    , l = list.length
+    , a = l * n
+  if (!a) return cb_(null, [])
+  function cb (er) {
+    if (er &#x26;&#x26; !errState) errState = er
+
+    var argLen = arguments.length
+    for (var i = 1; i &#x3c; argLen; i ++) if (arguments[i] !== undefined) {
+      data[i - 1] = (data[i - 1] || []).concat(arguments[i])
+    }
+    // see if any new things have been added.
+    if (list.length &#x3e; l) {
+      var newList = list.slice(l)
+      a += (list.length - l) * n
+      l = list.length
+      process.nextTick(function () {
+        newList.forEach(function (ar) {
+          steps.forEach(function (fn) { fn(ar, cb) })
+        })
+      })
+    }
+
+    if (--a === 0) cb_.apply(null, [errState].concat(data))
+  }
+  // expect the supplied cb function to be called
+  // &#x22;n&#x22; times for each thing in the array.
+  list.forEach(function (ar) {
+    steps.forEach(function (fn) { fn(ar, cb) })
+  })
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.slide.bindActor" id="apidoc.element.slide.bindActor">
+        function <span class="apidocSignatureSpan">slide.</span>bindActor
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function bindActor() {
+  var args =
+        Array.prototype.slice.call
+        (arguments) // jswtf.
+    , obj = null
+    , fn
+  if (typeof args[0] === &#x22;object&#x22;) {
+    obj = args.shift()
+    fn = args.shift()
+    if (typeof fn === &#x22;string&#x22;)
+      fn = obj[ fn ]
+  } else fn = args.shift()
+  return function (cb) {
+    fn.apply(obj, args.concat(cb)) }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.slide.chain" id="apidoc.element.slide.chain">
+        function <span class="apidocSignatureSpan">slide.</span>chain
+        <span class="apidocSignatureSpan">(things, cb)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function chain(things, cb) {
+var res = []
+;(function LOOP (i, len) {
+  if (i &#x3e;= len) return cb(null,res)
+  if (Array.isArray(things[i]))
+    things[i] = bindActor.apply(null,
+      things[i].map(function(i){
+        return (i===chain.first) ? res[0]
+         : (i===chain.last)
+           ? res[res.length - 1] : i }))
+  if (!things[i]) return LOOP(i + 1, len)
+  things[i](function (er, data) {
+    if (er) return cb(er, res)
+    if (data !== undefined) res = res.concat(data)
+    LOOP(i + 1, len)
+  })
+})(0, things.length) }</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.slide.asyncMap" id="apidoc.module.slide.asyncMap">module slide.asyncMap</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.slide.asyncMap.asyncMap" id="apidoc.element.slide.asyncMap.asyncMap">
+        function <span class="apidocSignatureSpan">slide.</span>asyncMap
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function asyncMap() {
+  var steps = Array.prototype.slice.call(arguments)
+    , list = steps.shift() || []
+    , cb_ = steps.pop()
+  if (typeof cb_ !== &#x22;function&#x22;) throw new Error(
+    &#x22;No callback provided to asyncMap&#x22;)
+  if (!list) return cb_(null, [])
+  if (!Array.isArray(list)) list = [list]
+  var n = steps.length
+    , data = [] // 2d array
+    , errState = null
+    , l = list.length
+    , a = l * n
+  if (!a) return cb_(null, [])
+  function cb (er) {
+    if (er &#x26;&#x26; !errState) errState = er
+
+    var argLen = arguments.length
+    for (var i = 1; i &#x3c; argLen; i ++) if (arguments[i] !== undefined) {
+      data[i - 1] = (data[i - 1] || []).concat(arguments[i])
+    }
+    // see if any new things have been added.
+    if (list.length &#x3e; l) {
+      var newList = list.slice(l)
+      a += (list.length - l) * n
+      l = list.length
+      process.nextTick(function () {
+        newList.forEach(function (ar) {
+          steps.forEach(function (fn) { fn(ar, cb) })
+        })
+      })
+    }
+
+    if (--a === 0) cb_.apply(null, [errState].concat(data))
+  }
+  // expect the supplied cb function to be called
+  // &#x22;n&#x22; times for each thing in the array.
+  list.forEach(function (ar) {
+    steps.forEach(function (fn) { fn(ar, cb) })
+  })
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.slide.bindActor" id="apidoc.module.slide.bindActor">module slide.bindActor</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.slide.bindActor.bindActor" id="apidoc.element.slide.bindActor.bindActor">
+        function <span class="apidocSignatureSpan">slide.</span>bindActor
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function bindActor() {
+  var args =
+        Array.prototype.slice.call
+        (arguments) // jswtf.
+    , obj = null
+    , fn
+  if (typeof args[0] === &#x22;object&#x22;) {
+    obj = args.shift()
+    fn = args.shift()
+    if (typeof fn === &#x22;string&#x22;)
+      fn = obj[ fn ]
+  } else fn = args.shift()
+  return function (cb) {
+    fn.apply(obj, args.concat(cb)) }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.slide.chain" id="apidoc.module.slide.chain">module slide.chain</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.slide.chain.chain" id="apidoc.element.slide.chain.chain">
+        function <span class="apidocSignatureSpan">slide.</span>chain
+        <span class="apidocSignatureSpan">(things, cb)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function chain(things, cb) {
+var res = []
+;(function LOOP (i, len) {
+  if (i &#x3e;= len) return cb(null,res)
+  if (Array.isArray(things[i]))
+    things[i] = bindActor.apply(null,
+      things[i].map(function(i){
+        return (i===chain.first) ? res[0]
+         : (i===chain.last)
+           ? res[res.length - 1] : i }))
+  if (!things[i]) return LOOP(i + 1, len)
+  things[i](function (er, data) {
+    if (er) return cb(er, res)
+    if (data !== undefined) res = res.concat(data)
+    LOOP(i + 1, len)
+  })
+})(0, things.length) }</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.slide.slide" id="apidoc.module.slide.slide">module slide.slide</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.slide.slide.asyncMap" id="apidoc.element.slide.slide.asyncMap">
+        function <span class="apidocSignatureSpan">slide.slide.</span>asyncMap
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function asyncMap() {
+  var steps = Array.prototype.slice.call(arguments)
+    , list = steps.shift() || []
+    , cb_ = steps.pop()
+  if (typeof cb_ !== &#x22;function&#x22;) throw new Error(
+    &#x22;No callback provided to asyncMap&#x22;)
+  if (!list) return cb_(null, [])
+  if (!Array.isArray(list)) list = [list]
+  var n = steps.length
+    , data = [] // 2d array
+    , errState = null
+    , l = list.length
+    , a = l * n
+  if (!a) return cb_(null, [])
+  function cb (er) {
+    if (er &#x26;&#x26; !errState) errState = er
+
+    var argLen = arguments.length
+    for (var i = 1; i &#x3c; argLen; i ++) if (arguments[i] !== undefined) {
+      data[i - 1] = (data[i - 1] || []).concat(arguments[i])
+    }
+    // see if any new things have been added.
+    if (list.length &#x3e; l) {
+      var newList = list.slice(l)
+      a += (list.length - l) * n
+      l = list.length
+      process.nextTick(function () {
+        newList.forEach(function (ar) {
+          steps.forEach(function (fn) { fn(ar, cb) })
+        })
+      })
+    }
+
+    if (--a === 0) cb_.apply(null, [errState].concat(data))
+  }
+  // expect the supplied cb function to be called
+  // &#x22;n&#x22; times for each thing in the array.
+  list.forEach(function (ar) {
+    steps.forEach(function (fn) { fn(ar, cb) })
+  })
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.slide.slide.bindActor" id="apidoc.element.slide.slide.bindActor">
+        function <span class="apidocSignatureSpan">slide.slide.</span>bindActor
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function bindActor() {
+  var args =
+        Array.prototype.slice.call
+        (arguments) // jswtf.
+    , obj = null
+    , fn
+  if (typeof args[0] === &#x22;object&#x22;) {
+    obj = args.shift()
+    fn = args.shift()
+    if (typeof fn === &#x22;string&#x22;)
+      fn = obj[ fn ]
+  } else fn = args.shift()
+  return function (cb) {
+    fn.apply(obj, args.concat(cb)) }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.slide.slide.chain" id="apidoc.element.slide.slide.chain">
+        function <span class="apidocSignatureSpan">slide.slide.</span>chain
+        <span class="apidocSignatureSpan">(things, cb)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function chain(things, cb) {
+var res = []
+;(function LOOP (i, len) {
+  if (i &#x3e;= len) return cb(null,res)
+  if (Array.isArray(things[i]))
+    things[i] = bindActor.apply(null,
+      things[i].map(function(i){
+        return (i===chain.first) ? res[0]
+         : (i===chain.last)
+           ? res[res.length - 1] : i }))
+  if (!things[i]) return LOOP(i + 1, len)
+  things[i](function (er, data) {
+    if (er) return cb(er, res)
+    if (data !== undefined) res = res.concat(data)
+    LOOP(i + 1, len)
+  })
+})(0, things.length) }</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
